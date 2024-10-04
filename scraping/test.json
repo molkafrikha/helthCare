@@ -1,0 +1,6 @@
+{'device_name': 'Vivo Y58', 'manufacturer': 'Vivo', 'rear_camera': {'resolution': '50 MP (wide) + 2 MP (depth)'}, 'front_camera': {'resolution': '8 MP (wide)'}, 'operating_system': 'Android 14 + Funtouch 14'}
+{'device_name': 'Samsung Galaxy M15', 'manufacturer': 'Samsung', 'rear_camera': {'resolution': '50 MP (wide) + 5 MP (ultrawide) + 2 MP (macro)'}, 'front_camera': {'resolution': '13 MP (wide)'}, 'operating_system': 'Android 14'}
+{'device_name': 'Honor Magic Vs3', 'manufacturer': 'Honor', 'rear_camera': {'resolution': '50 MP (wide) + 8 MP (telephoto) + 40 MP (ultrawide)'}, 'front_camera': {'resolution': '16 MP (wide)'}, 'operating_system': 'Android 14'}
+{'device_name': 'Meizu Blue 20', 'manufacturer': 'Meizu', 'rear_camera': {'resolution': '13 MP, AF (interpolated to 50 MP) + Secondary unspecified camera'}, 'front_camera': {'resolution': '5 MP (interpolated to 8 MP)'}, 'operating_system': 'Flyme AIOS'}
+{'device_name': 'Honor X6b', 'manufacturer': 'Honor', 'rear_camera': {'resolution': '50 MP (wide) + 2 MP (depth)'}, 'front_camera': {'resolution': '5 MP (wide)'}, 'operating_system': 'Android 14'}
+{'device_name': 'Oppo F27 Pro Plus', 'manufacturer': 'OPPO', 'rear_camera': {'resolution': '64 MP (wide) + 2 MP (macro)'}, 'front_camera': {'resolution': '8 MP (wide)'}, 'operating_system': 'Android 14'}
