@@ -1,0 +1,52 @@
+# Python
+*.py[cod]
+__pycache__/
+*.so
+*.egg-info/
+dist/
+build/
+eggs/
+*.egg
+
+# Django
+*.log
+*.pot
+*.pyc
+*.sqlite3
+db.sqlite3
+media/
+staticfiles/
+.env
+.venv/
+venv/
+ENV/
+env/
+*.log
+*.pot
+*.pyc
+*.sqlite3
+*.pyo
+*.pyd
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+nosetests.xml
+*.cover
+*.py,cover
+
+# IDE and editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+.DS_Store
+
+# Operating system files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
