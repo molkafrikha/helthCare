@@ -7,10 +7,11 @@ from mobicrowd.models.Users import Doctor, Patient
 
 class RegistrationSerializer(serializers.ModelSerializer):
     user_type = serializers.CharField(write_only=True)
+    
 
     class Meta:
         model = User
-        fields = ['email', 'password', 'fullName', 'mobile_phone', 'user_type']
+        fields = ['email', 'password', 'fullName', 'mobile_phone', 'user_type' , 'gender']
         extra_kwargs = {
             'password': {'write_only': True}
         }
