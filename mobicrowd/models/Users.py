@@ -70,13 +70,13 @@ class Token(models.Model):
 
 class Doctor(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, related_name='doctor_profile')
-    specialty = models.CharField(max_length=255)
-    qualifications = models.TextField()
-    availability = models.JSONField(default=list)  # e.g., [{"day": "Monday", "time": "09:00-17:00"}]
-    consultation_fee = models.DecimalField(max_digits=10, decimal_places=2)
+    specialty = models.CharField(max_length=255,null=True)
+    qualifications = models.TextField(null=True)
+    availability = models.JSONField(default=list ,null=True)  # e.g., [{"day": "Monday", "time": "09:00-17:00"}]
+    consultation_fee = models.DecimalField(max_digits=10, decimal_places=2 ,null=True)
     address = models.CharField(max_length=255, blank=True, null=True)
     profile_picture = models.ImageField(upload_to='doctor_pics/', blank=True, null=True)
-    approved = models.BooleanField(default=False)  # Add this line
+    approved = models.BooleanField(default=True)  # Add this line
     def __str__(self):
         return f"Dr. {self.user.fullName} -  {self.specialty}"
 

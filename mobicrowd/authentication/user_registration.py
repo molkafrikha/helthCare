@@ -29,10 +29,8 @@ class RegisterDoctorAPIView(APIView):
                     'is_active': False,
                     'role': 'Doctor',
                 },
-                'specialty': request.data.get('specialty'),
-                'qualifications': request.data.get('qualifications'),
-                'availability': request.data.get('availability'),
-                'consultation_fee': request.data.get('consultation_fee'),
+                
+                
                 'address': request.data.get('address'),
             })
 
