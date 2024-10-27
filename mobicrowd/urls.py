@@ -1,22 +1,30 @@
-from django.urls import path
+from django.urls import path, include
 from mobicrowd.authentication.login import LoginView
-from mobicrowd.authentication.registrationViews import  ApprovedRequestersListAPIView, LogoutAPIView, \
-    ConfirmEmailAPIView, RequesterApprovalAPIView, \
-    RequesterRejectionAPIView, ChangePasswordAPIView, ForgetPasswordView, PasswordResetConfirmView, \
+from mobicrowd.authentication.registrationViews import ( 
+    ApprovedRequestersListAPIView, LogoutAPIView, ConfirmEmailAPIView, 
+    RequesterApprovalAPIView, RequesterRejectionAPIView, 
+    ChangePasswordAPIView, ForgetPasswordView, PasswordResetConfirmView, 
     ActiveWorkersListAPIView, ApprovedRequestersListcountAPIView
+)
 from mobicrowd.authentication.user_registration import RegisterDoctorAPIView, RegisterPatientAPIView
-from mobicrowd.views.apis.sentimentAnalysis import   CommentCreateView  ,EventCommentsView
+from mobicrowd.views.apis.sentimentAnalysis import CommentCreateView, EventCommentsView
 from mobicrowd.views.apis.embeddingView import receive_embedding
 from mobicrowd.views.apis.insert_scraped_data import upload_devices_file, DeviceListView
 from mobicrowd.views.apis.users import UserRetrieveAPIView, ListPendingRequestersView
-from mobicrowd.views.apis.event_views import DeleteWorkerJoinView, AvailableEventsForPatientView ,\
-     RejectJoinRequestView, \
-    PendingInvitationsView, EventRetrieveByIdView, JoinEventView, \
-    EventListView, EventRetrieveView, EventCreateView, EventUpdateView, EventDeleteView, ApproveJoinRequestView, \
-    UserInfoAPIView, UpcomingEventsListAPIView, PastEventsListAPIView,  \
-    WorkerJoinedEventsUpcomingView, WorkerJoinedEventsPastView, WorkerJoinedEventsByIdView, PatientEventsPastView, \
-    PatientEventsAllView, PatientEventsUpcomingView, PendingPatientCountAPIView, WorkerEventStatusView 
+from mobicrowd.views.apis.event_views import (DeleteWorkerJoinView, AvailableEventsForPatientView,
+    RejectJoinRequestView, PendingInvitationsView, EventRetrieveByIdView, JoinEventView,
+    EventListView, EventRetrieveView, EventCreateView, EventUpdateView, EventDeleteView, ApproveJoinRequestView,
+    UserInfoAPIView, UpcomingEventsListAPIView, PastEventsListAPIView, WorkerJoinedEventsUpcomingView,
+    WorkerJoinedEventsPastView, WorkerJoinedEventsByIdView, PatientEventsPastView, PatientEventsAllView,
+    PatientEventsUpcomingView, PendingPatientCountAPIView, WorkerEventStatusView
+)
+from mobicrowd.views.apis.assessments import AssessmentViewSet, AssessmentResultViewSet
+from rest_framework.routers import DefaultRouter
 
+
+router = DefaultRouter()
+router.register(r'assessments', AssessmentViewSet, basename='assessments')
+router.register(r'assessment-results', AssessmentResultViewSet, basename='assessment-results')
 
 urlpatterns = [
     path('users/<int:id>', UserRetrieveAPIView.as_view(), name='user-detail'),
@@ -68,10 +76,7 @@ urlpatterns = [
     path('events/<int:event_id>/comments', EventCommentsView.as_view(), name='event-comments'),  # URL pour récupérer les commentaires d'un événement
     # decoder model api
     path('comments', CommentCreateView.as_view(), name='comment-create'),
-    
+     path('', include(router.urls)),  # Add this line to include the assessment URLs
     ##### events apis #############
    
 ]
-
-
-
