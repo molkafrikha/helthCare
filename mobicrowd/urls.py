@@ -60,9 +60,9 @@ urlpatterns = [
     path('events/join/<int:event_id>', JoinEventView.as_view(), name='join-event'),
     path('events/approve/<int:event_worker_id>', ApproveJoinRequestView.as_view(), name='approve-join-request'),
     path('events/refuse/<int:event_worker_id>', RejectJoinRequestView.as_view(), name='approve-join-request'),
-    path('worker/<int:worker_id>/events/joined/all', WorkerJoinedEventsByIdView.as_view(), name='worker-joined-events'),
-    path('worker/<int:worker_id>/events/joined/upcoming', WorkerJoinedEventsUpcomingView.as_view(), name='worker-joined-events'),
-    path('worker/<int:worker_id>/events/joined/past', WorkerJoinedEventsPastView.as_view(), name='worker-joined-events'),
+    path('worker/<int:patient_id>/events/joined/all', WorkerJoinedEventsByIdView.as_view(), name='worker-joined-events'),
+    path('worker/<int:patient_id>/events/joined/upcoming', WorkerJoinedEventsUpcomingView.as_view(), name='worker-joined-events'),
+    path('worker/<int:patient_id>/events/joined/past', WorkerJoinedEventsPastView.as_view(), name='worker-joined-events'),
     path('events/past', PastEventsListAPIView.as_view(), name='past-events-list'),
     path('events/upcoming', UpcomingEventsListAPIView.as_view(), name='upcoming-events-list'),
     

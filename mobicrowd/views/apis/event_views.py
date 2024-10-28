@@ -10,13 +10,24 @@ from rest_framework.permissions import IsAuthenticated
 from django_filters import rest_framework as filters
 from django_filters.rest_framework import DjangoFilterBackend
 from ...models.submisson import Event, EventPatient 
-from ...models.Users import Patient, User
+from ...models.Users import Patient, User , Doctor
 from mobicrowd.serializers.submissionSerializers import EventWorkerSerializer, EventSerializer
 
 class EventListView(generics.ListAPIView):
-    queryset = Event.objects.all()
     serializer_class = EventSerializer
+    permission_classes = [IsAuthenticated]
 
+    def get_queryset(self):
+        user = self.request.user
+
+        # Vérifiez si l'utilisateur connecté est un médecin
+        try:
+            doctor = Doctor.objects.get(user=user)
+            # Retournez uniquement les événements créés par ce médecin
+            return Event.objects.filter(doctor=doctor)
+        except Doctor.DoesNotExist:
+            # Si l'utilisateur n'est pas un médecin, retourner une liste vide ou tous les événements selon le besoin
+            return Event.objects.none()
 class UpcomingEventsListAPIView(generics.ListAPIView):
     queryset = Event.objects.filter(deadline__gt=timezone.now())
     serializer_class = EventSerializer
@@ -140,7 +151,6 @@ class WorkerJoinedEventsByIdView(APIView):
         joined_events = [ew.event for ew in event_workers]
         serializer = EventSerializer(joined_events, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
-
 class AvailableEventsForPatientView(APIView):
     permission_classes = [IsAuthenticated]
 

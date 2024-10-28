@@ -2,13 +2,12 @@ from rest_framework import serializers
 from mobicrowd.models.submisson import EventPatient, Event, Reward, PatientReward , Comment
 
 class EventWorkerSerializer(serializers.ModelSerializer):
-    event_title = serializers.CharField(source='event.title')
-    patient_id = serializers.CharField(source='patient.user.id')  # Utiliser `patient` à la place de `worker`
+    patient_fullname = serializers.CharField(source='patient.user.fullName', read_only=True)
+    event_title = serializers.CharField(source='event.title', read_only=True)
 
     class Meta:
         model = EventPatient
-        fields = '__all__'
-
+        fields = ['id', 'event_title', 'patient_id', 'patient_fullname', 'status', 'joined_at', 'event']
 class EventSerializer(serializers.ModelSerializer):
     joined_patients = serializers.SerializerMethodField()  # Mettre à jour à `joined_patients`
     requester_organization_name = serializers.CharField(source='requester.organization_name', read_only=True)
