@@ -1,9 +1,9 @@
 from django.db import models
 from django.utils import timezone
-from mobicrowd.models.Users import Patient
+from mobicrowd.models.Users import Patient , Doctor
 
 class Event(models.Model):
-    patient = models.ForeignKey('patient', on_delete=models.CASCADE, related_name='events')
+    doctor = models.ForeignKey('Doctor', on_delete=models.CASCADE, related_name='events')
     title = models.CharField(max_length=255)
     description = models.TextField()
     location = models.JSONField(default=dict)  # Store location as a JSON dictionary
