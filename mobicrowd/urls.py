@@ -5,7 +5,7 @@ from mobicrowd.authentication.registrationViews import  ApprovedRequestersListAP
     RequesterRejectionAPIView, ChangePasswordAPIView, ForgetPasswordView, PasswordResetConfirmView, \
     ActiveWorkersListAPIView, ApprovedRequestersListcountAPIView
 from mobicrowd.authentication.user_registration import RegisterDoctorAPIView, RegisterPatientAPIView
-from mobicrowd.views.apis.sentimentAnalysis import   CommentCreateView  ,EventCommentsView
+from mobicrowd.views.apis.sentimentAnalysis import   CommentCreateView  ,EventCommentsView ,ChatbotView
 from mobicrowd.views.apis.embeddingView import receive_embedding
 from mobicrowd.views.apis.insert_scraped_data import upload_devices_file, DeviceListView
 from mobicrowd.views.apis.users import UserRetrieveAPIView, ListPendingRequestersView
@@ -68,7 +68,7 @@ urlpatterns = [
     path('events/<int:event_id>/comments', EventCommentsView.as_view(), name='event-comments'),  # URL pour récupérer les commentaires d'un événement
     # decoder model api
     path('comments', CommentCreateView.as_view(), name='comment-create'),
-    
+    path('chatbot_response', ChatbotView.as_view(), name='chatbot_response'),
     ##### events apis #############
    
 ]
