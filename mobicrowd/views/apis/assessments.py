@@ -1,8 +1,13 @@
+import logging
+import traceback
 from rest_framework import viewsets
-from rest_framework.permissions import AllowAny  # Import AllowAny
+from rest_framework.permissions import AllowAny
 from mobicrowd.models.assessment import Assessment
 from mobicrowd.models.assessment_result import AssessmentResult
 from mobicrowd.serializers.assessment_serializers import AssessmentSerializer, AssessmentResultSerializer
+
+# Configure the logger
+logger = logging.getLogger(__name__)
 
 class AssessmentViewSet(viewsets.ModelViewSet):
     """
@@ -12,13 +17,18 @@ class AssessmentViewSet(viewsets.ModelViewSet):
     """
     queryset = Assessment.objects.all()
     serializer_class = AssessmentSerializer
-    permission_classes = [AllowAny]  # Change to AllowAny
+    permission_classes = [AllowAny]
 
     def perform_create(self, serializer):
         """
         Save the new assessment instance after adding any custom logic, if needed.
         """
-        serializer.save()
+        try:
+            serializer.save()
+        except Exception as e:
+            logger.error(f"Error creating assessment: {e}")
+            logger.error(traceback.format_exc())
+            raise
 
 class AssessmentResultViewSet(viewsets.ModelViewSet):
     """
@@ -28,10 +38,15 @@ class AssessmentResultViewSet(viewsets.ModelViewSet):
     """
     queryset = AssessmentResult.objects.all()
     serializer_class = AssessmentResultSerializer
-    permission_classes = [AllowAny]  # Change to AllowAny
+    permission_classes = [AllowAny]
 
     def perform_create(self, serializer):
         """
         Save the new assessment result instance after adding any custom logic, if needed.
         """
-        serializer.save()
+        try:
+            serializer.save()
+        except Exception as e:
+            logger.error(f"Error creating assessment result: {e}")
+            logger.error(traceback.format_exc())
+            raise

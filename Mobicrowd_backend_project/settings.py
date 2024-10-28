@@ -30,7 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',  # Added sites framework
-    'corsheaders',
+    'corsheaders',  # Add corsheaders
     'rest_framework',
     'rest_framework_simplejwt',
     'allauth',
@@ -44,7 +44,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',  # Add CORS middleware
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -85,7 +85,7 @@ DATABASES = {
         'PASSWORD': '',      # Add your database password
         'HOST': 'localhost',
         'PORT': 3306,
-         'OPTIONS': {
+        'OPTIONS': {
             'init_command': 'SET sql_mode="STRICT_ALL_TABLES"',  # Enable strict mode
         },
     }
@@ -158,6 +158,11 @@ CELERY_ACCEPT_CONTENT = ['json']  # Accept JSON serialized tasks
 CELERY_TASK_SERIALIZER = 'json'  # Serialize tasks using JSON
 CELERY_RESULT_SERIALIZER = 'json'  # Serialize task results using JSON
 CELERY_TIMEZONE = 'UTC'  # Set timezone for Celery tasks
+
+# CORS Configuration
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:4200",  # Allow requests from the Angular app
+]
 
 # Logging Configuration
 LOGGING = {

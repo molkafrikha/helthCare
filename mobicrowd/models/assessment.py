@@ -1,13 +1,8 @@
 from django.db import models
-from django.utils import timezone
 
 class Assessment(models.Model):
-    title = models.CharField(max_length=200)
-    description = models.TextField(help_text="Brief description of the assessment purpose.")
-    created_at = models.DateTimeField(auto_now_add=True)
-
     # Patient-submitted information
-    date_of_assessment = models.DateField(default=timezone.now, help_text="Date of the assessment.")
+    date_of_assessment = models.DateField(auto_now_add=True, help_text="Date of the assessment.")
     
     # Ratings submitted by the patient
     mood_rating = models.IntegerField(
@@ -26,6 +21,18 @@ class Assessment(models.Model):
         help_text="Rate your stress level on a scale from 1 (Very Low) to 5 (Very High)."
     )
     
+    # Additional Ratings
+    sleep_quality_rating = models.IntegerField(
+        choices=[(1, 'Very Poor'), (2, 'Poor'), (3, 'Fair'), (4, 'Good'), (5, 'Excellent')],
+        default=3,
+        help_text="Rate the quality of your sleep on a scale from 1 (Very Poor) to 5 (Excellent)."
+    )
+    physical_pain_rating = models.IntegerField(
+        choices=[(1, 'None'), (2, 'Mild'), (3, 'Moderate'), (4, 'Severe'), (5, 'Extreme')],
+        default=1,
+        help_text="Rate your physical pain level today on a scale from 1 (None) to 5 (Extreme)."
+    )
+    
     # Open-ended fields for patient input
     coping_mechanisms = models.TextField(
         blank=True,
@@ -37,8 +44,19 @@ class Assessment(models.Model):
         default="No recent events reported.",
         help_text="Describe any recent life events that may have impacted your mental health."
     )
-    follow_up_needed = models.BooleanField(default=False, help_text="Indicate if follow-up is needed after this assessment.")
-    comments = models.TextField(blank=True, help_text="Additional comments or notes about your assessment.")
+    daily_highlights = models.TextField(
+        blank=True,
+        help_text="List any positive experiences or highlights from today."
+    )
+    thought_patterns = models.TextField(
+        blank=True,
+        default="No specific thoughts reported.",
+        help_text="Describe any persistent thoughts or patterns (negative or positive) you experienced today."
+    )
+    gratitude_entries = models.TextField(
+        blank=True,
+        help_text="List things you are grateful for today."
+    )
 
     def __str__(self):
-        return self.title
+        return f"Assessment on {self.date_of_assessment}"
