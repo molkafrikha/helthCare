@@ -195,22 +195,6 @@ frontendUrl = 'http://localhost:4200/sign-in'
 
 
 
-AWS_ACCESS_KEY_ID= "AKIA23PIJ25VTSP6UA4B"
-AWS_SECRET_ACCESS_KEY= "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"
-AWS_REGION = 'us-east-1'
-AWS_STORAGE_BUCKET_NAME = 'mobicrowd'
-AWS_S3_REGION_NAME = 'us-east-1'
-AWS_DEFAULT_ACL = 'public-read'
-AWS_LOCATION = 'multimedia'
-AWS_HEADERS = {
-    'access-Control-Allow-Origin': '*'
-}
-# Configure the location of the static and media files
-MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/media/'
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-
-
 # Celery settings
 CELERY_BROKER_URL = 'redis://localhost:6379/0'  # Redis as the message broker
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'  # Redis as the result backend
